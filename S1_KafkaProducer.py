@@ -5,7 +5,7 @@ import datetime
 
 from kafka import KafkaProducer
 
-broker_address = "localhost:29092"
+broker_address = "localhost:9092"
 topic = "Velo-Data"
 
 # Type metingen
@@ -31,21 +31,21 @@ def generate_event():
     # Selecteren van de random zone en random meting
     zone = random.choice(list(zones.keys()))
     measurement_type = random.choice(measurement_types)
-    zone_info = zones[zone]
+    zone_quadrant = zones[zone]
 
     # Afronden van coördinaten
-    x = round(random.uniform(*zone_info["x"]), 5)
-    y = round(random.uniform(*zone_info["y"]), 5)
+    x = round(random.uniform(*zone_quadrant["x"]), 5)
+    y = round(random.uniform(*zone_quadrant["y"]), 5)
 
     # Genereren van random meetwaardes voor de juiste (eerder bepaalde) meting
     if measurement_type == "GELUID":
-        value = random.randint(*zone_info["noise"])
+        value = random.randint(*zone_quadrant["noise"])
     elif measurement_type == "FIJNSTOF":
-        value = round(random.uniform(*zone_info["dust"]), 1)
+        value = round(random.uniform(*zone_quadrant["dust"]), 1)
     else:
-        value = round(random.uniform(*zone_info["temperature"]), 1)
+        value = round(random.uniform(*zone_quadrant["temperature"]), 1)
 
-    return event(
+    return Event(
         timestamp=datetime.datetime.now().isoformat(),
         location={"x": x, "y": y},
         measurement_type=measurement_type,
@@ -70,5 +70,5 @@ while True:
         "zone": event.zone
     }
     producer.send(topic, key=event.measurement_type, value=event_dict)
-    print("Send:", event_dict)
+    print("Send to Kafka:", event_dict)
     time.sleep(1)  # Elke seconde (ipv minuut, voor demo)
