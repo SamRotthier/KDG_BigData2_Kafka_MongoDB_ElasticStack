@@ -71,4 +71,4 @@ while True:
     }
     producer.send(topic, key=event.measurement_type, value=event_dict)
     print("Send to Kafka:", event_dict)
-    time.sleep(60)  # Elke seconde (ipv minuut, voor demo)
+    time.sleep(5)  # Elke seconde (ipv minuut, voor demo)
