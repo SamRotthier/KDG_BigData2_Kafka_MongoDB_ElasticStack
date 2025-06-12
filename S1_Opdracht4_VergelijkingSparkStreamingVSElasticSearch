@@ -1,0 +1,9 @@
+# Inleiding
+We vergelijken Spark Streaming van voorgaande module tegenover ElasticSearch.
+Met beide kunnen we tijdgebaseerde data verwerken en data analyseren.
+
+Echter merk ik wel dat we met Spark op een duidelijkere manier toch complexere real-time data kunnen analyseren.
+Het is in Spark ook eenvoudiger om de data te transformeren naar bruikbare waardes.
+
+Bij ElasticSearch vind ik het dan weer eenvoudiger om dashboarden te maken en de data duidelijker visueel voor te stellen.
+ElasticSearch lijkt mij ook aangenamer om (na het opstellen van toch wel lastige aggregaties) te zoeken op specifieke data.
