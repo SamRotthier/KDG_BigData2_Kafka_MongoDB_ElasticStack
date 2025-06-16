@@ -11,7 +11,8 @@ query:
 
 ### Query - All shards
 Wanneer we query uitvoeren op de stad
-zoals: { "city": "Mortsel" } (in compas)
+zoals in compas: 
+{ "city": "Mortsel" } 
 Dan worden alle shards aangesproken
 
 In shell:

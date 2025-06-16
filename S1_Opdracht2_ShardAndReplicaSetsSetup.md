@@ -129,3 +129,16 @@ sh.addShard("shard3ReplSet/localhost:27026,localhost:27027")
 
 ### Controlleer of alles goed is toegevoegd
 sh.status()
+
+### Enable sharding in router
+sh.enableSharding("VeloData")
+
+### Adding the shardkey
+sh.shardCollection("VeloData.rides", { "startTime": 1, "_id": 1 })
+(=> Na examen - Betere optie was: sh.shardCollection("VeloData.rides", { "startTime": 1 }))
+
+# Inladen van data
+Het inladen van de data is vrij eenvoudig via MongoDB Compass.
+Verbind met localhost:27017
+Ga daarna VeloData en daarna rides
+Daar kan je bovenaan "ADD DATA" klikken en kiezen voor de, eerder gegenereerde, JSON Files in te laden.
